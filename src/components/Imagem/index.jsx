@@ -10,7 +10,7 @@ const Imagem = ({show}) => {
         
         <Image>
             
-            <img src={Img} alt="" />
+            <img src={Img} alt="Nossa Essência - RS Vieira" />
             <h4>Nossa Essência</h4>
             <span>
                 Inovação • Confiança • Qualidade em cada serviço prestado

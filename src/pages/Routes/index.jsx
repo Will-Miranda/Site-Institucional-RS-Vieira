@@ -1,37 +1,53 @@
-import React from "react";
-
+import React, { lazy, Suspense } from "react";
 import { 
     BrowserRouter, 
     Route, 
     Routes 
-} from "react-router-dom"
+} from "react-router-dom";
 
-import Header from "../../components/Header"
-import Footer from "../../components/Footer"
-import Home from "../Home"
-import Contact from "../Contact"
-import WhoWeAre from "../WhoWeAre"
-import Services from "../Services"
-import Depoimentos from "../Depoimentos"
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import ScrollToTop from "../../components/Scrolltop";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
+// Lazy loading das páginas
+const Home = lazy(() => import("../Home"));
+const Contact = lazy(() => import("../Contact"));
+const WhoWeAre = lazy(() => import("../WhoWeAre"));
+const Services = lazy(() => import("../Services"));
+const Depoimentos = lazy(() => import("../Depoimentos"));
+
+const PageLoader = () => (
+    <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        minHeight: '200px',
+        backgroundColor: '#e9e9e9'
+    }}>
+        <LoadingSpinner />
+    </div>
+);
 
 const RouterApp = () => {
-
-    return(
+    return (
         <BrowserRouter>
             <Header />
             <ScrollToTop />
-            <Routes>
-                <Route path="/" element={<Home />} />,
-                <Route path="/whoweare" element={<WhoWeAre />} />,
-                <Route path="/services" element={<Services />} />,
-                <Route path="/depoimentos" element={<Depoimentos />} />,
-                <Route path="/contact" element={<Contact />} />
-            </Routes>
+            <main>
+                <Suspense fallback={<PageLoader />}>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/whoweare" element={<WhoWeAre />} />
+                        <Route path="/services" element={<Services />} />
+                        <Route path="/depoimentos" element={<Depoimentos />} />
+                        <Route path="/contact" element={<Contact />} />
+                    </Routes>
+                </Suspense>
+            </main>
             <Footer />
         </BrowserRouter>
-    )
-}
+    );
+};
 
-export default RouterApp
+export default RouterApp;

@@ -33,9 +33,9 @@ const Home = () => {
                 <TextImg>
                     <h4>
                         Segurança e Transparencia em Serviço
-                        “O bem e seu, o cuidar é nosso”
+                        "O bem e seu, o cuidar é nosso"
                     </h4>
-                    <img src={Img} alt="" />
+                    <img src={Img} alt="Serviços de Monitoramento - RS Vieira" />
                 </TextImg>
 
                 <Title>ENTRE EM CONTATO</Title>

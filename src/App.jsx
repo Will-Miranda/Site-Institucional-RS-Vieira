@@ -1,13 +1,17 @@
-import React, { Fragment } from "react";
+import React, { Suspense } from "react";
 import StyleGlobal from "./StyleGlobal/global.js";
 import RouterApp from "./pages/Routes"
+import ErrorBoundary from "./components/ErrorBoundary"
+import LoadingSpinner from "./components/LoadingSpinner"
 
-function App () {
+function App() {
     return (
-        <Fragment>
-            <RouterApp />
+        <ErrorBoundary>
             <StyleGlobal />
-        </Fragment>
+            <Suspense fallback={<LoadingSpinner />}>
+                <RouterApp />
+            </Suspense>
+        </ErrorBoundary>
     )
 }
 
